@@ -55,7 +55,7 @@ const ContractFun = () => {
 
   return (
     <>
-      <h2>Importing contracts from remix - sample!</h2>
+      <h1>Importing contracts from remix - sample!</h1>
       <div className={classes.root}>
         <header className="App-header">
           <TextField
