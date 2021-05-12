@@ -21,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ContractFun = () => {
   const classes = useStyles();
+  const initialval = 0;
 
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState(initialval);
   const [getVal, setGetVal] = useState(false);
+  const [getNum, setGetNum] = useState(initialval);
 
   const setData = async (e) => {
     e.preventDefault();
@@ -35,11 +37,20 @@ const ContractFun = () => {
       .setValue(val)
       .send({ from: account, gas });
     console.log(result);
+    setVal(initialval);
   };
 
   const getData = async (e) => {
+    e.preventDefault();
     setGetVal(!getVal);
-    RemixContract.methods.getData().call().then(console.log);
+    const data = await RemixContract.methods.getData().call();
+    setGetNum(data);
+  };
+
+  const handleClear = () => {
+    setVal(initialval);
+    setGetNum(initialval);
+    setGetVal(false);
   };
 
   return (
@@ -63,8 +74,11 @@ const ContractFun = () => {
             <Button variant="contained" color="primary" onClick={getData}>
               Get Data
             </Button>
+            <Button variant="contained" onClick={handleClear}>
+              Clear
+            </Button>
           </div>
-          {getVal && <h3>{val} is the value that is set.</h3>}
+          {getVal && <h3>{getNum} is the value that is set.</h3>}
         </header>
       </div>
     </>
