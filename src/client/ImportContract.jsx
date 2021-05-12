@@ -8,7 +8,7 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 
 const RemixContract = new web3.eth.Contract(
   StorageABI,
-  "0xd9379868915e6d9C6A83C6eFA85B51A9B4A0d7Ee"
+  "0x0c5AF3158FCd5ADC586944CAf3c81968D9663f7D"
 );
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +30,7 @@ const ContractFun = () => {
   const setData = async (e) => {
     e.preventDefault();
     // const accounts = await window.ethereum.enable();
-    const account = "0x812338630315076f1bf65024d79000cB8dABFA8f";
+    const account = "0x1F03B73d9A8Edb7Ac03a9F75D83bf00177974273";
 
     const gas = await RemixContract.methods.setValue(val).estimateGas();
     const result = await RemixContract.methods
